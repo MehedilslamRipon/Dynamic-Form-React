@@ -58,7 +58,7 @@ function App() {
    };
 
    const removeItem = (index) => {
-      setInputField([...inputField.splice(index, 1)]);
+      setInputField([...inputField.slice(index, 1), ...inputField.slice(3)]);
    };
 
    return (
