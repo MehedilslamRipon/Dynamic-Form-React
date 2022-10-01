@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import RemoveIcon from '@mui/icons-material/Remove';
+import Swal from 'sweetalert2';
 import './App.css';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -41,8 +42,15 @@ function App() {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(inputField);
       localStorage.setItem('productInfo', JSON.stringify(inputField));
+
+      Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'Successfully Submitted!',
+         showConfirmButton: false,
+         timer: 1500,
+      });
    };
 
    const showData = () => {
@@ -79,7 +87,6 @@ function App() {
             <Box
                mt={2}
                mb={3}
-               onSubmit={handleSubmit}
                component="form"
                sx={{
                   '& > :not(style)': { m: 1, width: '25ch' },
@@ -133,7 +140,7 @@ function App() {
                   </React.Fragment>
                ))}
                <br />
-               <Button type="submit" variant="contained">
+               <Button type="submit" variant="contained" onClick={handleSubmit}>
                   Submit
                </Button>
             </Box>
